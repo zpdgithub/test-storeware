@@ -3,6 +3,14 @@ import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
 import { HttpModule, Http, Response } from '@angular/http';
 
+/*
+ * Components
+ */
+import {HomeComponent} from './components/HomeComponent';
+import {AboutComponent} from './components/AboutComponent';
+import {MoreComponent} from './components/MoreComponent';
+
+
 @Component({
   selector: 'app-root',
   template: `
