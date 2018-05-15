@@ -2,18 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
 import { HttpModule, Http, Response } from '@angular/http';
+import {
+  RouterModule,
+  Routes
+} from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 /*
  * Components
  */
-import {HomeComponent} from './components/HomeComponent';
-import {AboutComponent} from './components/AboutComponent';
-import {MoreComponent} from './components/MoreComponent';
+import { HomeComponent } from './components/HomeComponent';
+import { AboutComponent } from './components/AboutComponent';
+import { MoreComponent } from './components/MoreComponent';
 
 
 @Component({
   selector: 'app-root',
   template: `
+  <ul>
+    <li><a [routerLink]="['home']">Home</a></li>
+    <li><a [routerLink]="['about']">About</a></li>
+    <li><a [routerLink]="['more']">More</a></li>
+  </ul>
+  <router-outlet></router-outlet>
   <div>更换皮肤</div>
   <div>
     <button *ngFor="let theme of themes" (click)="loadCss(theme.css)">css{{theme.id}}</button>
@@ -74,16 +85,28 @@ export class AppComponent {
   }
 }
 
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'more', component: MoreComponent },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    AboutComponent,
+    MoreComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
