@@ -14,3 +14,10 @@ npm start
 ```
 地址：127.0.0.1:4000
 
+### angular前端
+启动
+```
+cd web-angular
+npm start
+```
+地址：127.0.0.1:4200
