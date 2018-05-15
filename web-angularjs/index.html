@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic CSS</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/stateEvents.min.js"></script>
+</head>
+
+<body ng-controller="AppController">
+    <a href ui-sref="app.home">home</a>
+    <a href ui-sref="app.about">about</a>
+    <a href ui-sref="app.more">more</a>
+    <div class="content" ui-view></div>
+    <div>
+        更换皮肤
+    </div>
+    <div>
+        <button ng-repeat="theme in themes" ng-click="loadCss(theme.css)">css{{theme.id}}</button>
+    </div>
+    <div>
+        <button ng-repeat="theme in themes" ng-click="loadJs(theme.js)">js{{theme.id}}</button>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
